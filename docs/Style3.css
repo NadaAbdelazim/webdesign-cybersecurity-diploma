@@ -1,0 +1,64 @@
+
+CSS — Style2.css:
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: white;
+}
+
+.top {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 4px;
+    height: 50vh;
+    background-color: orange;
+    border-bottom: 4px solid white;
+}
+
+.black-box {
+    width: 240px;
+    height: 240px;
+    background-color: black;
+}
+
+.bottom {
+    display: flex;
+    gap: 8px;
+    padding: 4px;
+    height: 50vh;
+    background-color: green;
+}
+
+.blue-box {
+    width: 25%;
+    height: 240px;
+    background-color: blue;
+}
+
+/* Push the other two boxes to the right */
+.first {
+    margin-right: auto;
+}
+
+/* Stack boxes on smaller screens */
+@media (max-width: 768px) {
+    .top,
+    .bottom {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .black-box,
+    .blue-box {
+        width: 100%;
+    }
+
+    .first {
+        margin-right: 0;
+    }
+}

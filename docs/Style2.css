@@ -1,0 +1,18 @@
+.header {
+	background: navy;
+	color: white;
+	padding: 20px;
+}
+.nav{
+	background: lightgray;
+}
+
+.content{
+	height:150px
+}
+.footer {
+    background-color: navy;
+    color: white;
+    padding: 15px;
+
+}
