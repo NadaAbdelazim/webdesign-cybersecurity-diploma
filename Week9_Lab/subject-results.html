@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subject Results</title>
+</head>
+<body>
+  <h1>Subject Results</h1>
+  <label for="subjects">How many subjects do you take?</label>
+  <input type="text" id="subjects">
+  <button type="button" onclick="addMarkBoxes()">Enter marks</button>
+
+  <div id="marks"></div>
+  <button type="button" id="show-results" onclick="showResults()" hidden>Show results</button>
+  <pre id="results"></pre>
+
+  <script>
+    function addMarkBoxes() {
+      let subjects = Number(document.getElementById("subjects").value);
+      if (!Number.isSafeInteger(subjects) || subjects < 1) {
+        document.getElementById("results").textContent = "Enter a positive whole number of subjects.";
+        return;
+      }
+
+      let boxes = "";
+      for (let subject = 1; subject <= subjects; subject++) {
+        boxes += '<p><label>Subject ' + subject + ' mark (0 to 100) ';
+        boxes += '<input type="text"></label></p>';
+      }
+
+      document.getElementById("marks").innerHTML = boxes;
+      document.getElementById("results").textContent = "";
+      document.getElementById("show-results").hidden = false;
+    }
+
+    function showResults() {
+      let boxes = document.getElementById("marks").getElementsByTagName("input");
+      let results = document.getElementById("results");
+      let total = 0;
+      let output = "";
+
+      for (let i = 0; i < boxes.length; i++) {
+        let answer = boxes[i].value.trim();
+        let mark = Number(answer);
+        if (answer === "" || !(mark >= 0 && mark <= 100)) {
+          results.textContent = "Enter a mark from 0 to 100 for subject " + (i + 1) + ".";
+          return;
+        }
+
+        total += mark;
+        output += "Subject " + (i + 1) + ": " + mark + "%\n";
+      }
+
+      let average = total / boxes.length;
+      let grade = "F";
+      if (average >= 90) grade = "A";
+      else if (average >= 80) grade = "B";
+      else if (average >= 70) grade = "C";
+      else if (average >= 60) grade = "D";
+      else if (average >= 50) grade = "E";
+
+      results.textContent = output + "\nAverage: " + average.toFixed(2) + "%\nGrade: " + grade;
+    }
+  </script>
+</body>
+</html>

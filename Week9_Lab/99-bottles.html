@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>99 Bottles of Beer</title>
+</head>
+<body>
+  <h1>99 Bottles of Beer</h1>
+  <pre id="lyrics"></pre>
+
+  <script>
+    function bottles(count) {
+      if (count === 0) return "no more bottles";
+      if (count === 1) return "1 bottle";
+      return count + " bottles";
+    }
+
+    let lyrics = "";
+    for (let count = 99; count > 0; count--) {
+      lyrics += bottles(count) + " of beer on the wall, ";
+      lyrics += bottles(count) + " of beer.\n";
+      lyrics += "Take one down and pass it around, ";
+      lyrics += bottles(count - 1) + " of beer on the wall.\n\n";
+    }
+
+    lyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
+    lyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.";
+    document.getElementById("lyrics").textContent = lyrics;
+  </script>
+</body>
+</html>
